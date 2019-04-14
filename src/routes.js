@@ -7,6 +7,7 @@ const UsuarioController = require('./Controller/UsuarioController');
 
 routes.post('/Grupo', GrupoController.CriarNovoGrupo);
 routes.get('/Grupo/:id', GrupoController.BuscarGrupoPorId);
+routes.get('/Grupo/Usuario/:id', GrupoController.BuscarGruposPorUsuario);
 
 routes.post('/Grupo/:id/Mensagem', MensagemController.EnviarMensagem);
 

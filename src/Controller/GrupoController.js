@@ -25,6 +25,14 @@ class GrupoController{
         return res.json(grupo);
     
     }
+
+    async BuscarGruposPorUsuario(req, res){
+        const grupos = await Grupo.find({
+            usuarios: [req.params.id]
+        });
+
+        return res.json(grupos);
+    }
 }
 
 module.exports = new GrupoController();
