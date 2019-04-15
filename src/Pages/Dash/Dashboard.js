@@ -6,16 +6,21 @@ export default class Dashboard extends Component{
     state = {
         signin: false,
         usuario: {},
-        grupos: []
+        grupos: [],
+        grupoAtivo: ''
     };
 
   async componentDidMount(){ 
     
       const user = await JSON.parse(localStorage.getItem('@HashTechStorage:usuario')); 
-      this.setState({usuario: user.data}); 
+      this.setState({usuario: user}); 
       const grupo = await api.get(`/Grupo/Usuario/${this.state.usuario._id}`); 
-        this.setState({grupos: grupo.data});
+        this.setState({grupos: grupo.data}); 
        
+  }
+
+  changeGroup = e =>{
+      this.setState(e.target.key);
   }
     render(){
         return (
@@ -28,7 +33,8 @@ export default class Dashboard extends Component{
            ))} 
           </div>
           <div class="vl"></div>
-          </div> 
+          </div>
+          <Chat group={this.state.grupoAtivo}/>
         );
     }
 }
